@@ -59,11 +59,15 @@ CORE RESEARCH EXPERTISE:
 - Behavioral neuroscience: CUS models, sucrose preference, anxiety assays
 - Human subjects research: IRB-approved study design, 30+ donors, consent management
 
-WET LAB TECHNIQUES:
+WET LAB TECHNIQUES (hands-on, proficient):
 - Flow cytometry (multi-color, ImageStream), ELISA, western blot, immunofluorescence
 - Confocal microscopy (Zeiss LSM 710/880), live cell imaging, CellProfiler, ImageJ
 - Patch clamp electrophysiology, stem cell culture, neuronal differentiation protocols
-- scRNA-seq analysis, statistical inference (R, Python, GraphPad Prism)
+- Statistical analysis: R, Python, GraphPad Prism
+
+COMPUTATIONAL (self-taught, supporting skill only -- NOT a primary expertise):
+- scRNA-seq data analysis (self-taught; can interpret and run pipelines but NOT a dedicated bioinformatician)
+- NOT suitable for roles where scRNA-seq is the primary job function (e.g. 10x Genomics, dedicated computational roles)
 
 PUBLICATIONS:
 1. First-author: Psychoneuroendocrinology (2026) — stress hormones, neutrophils, NET formation, behavioral consequences
@@ -115,7 +119,7 @@ GREENHOUSE_COMPANIES = {
     "vertex":           "Vertex Pharmaceuticals",
     "biogen":           "Biogen",
     "illumina":         "Illumina",
-    "10xgenomics":      "10x Genomics",
+    # 10x Genomics excluded -- roles are predominantly single-cell bioinformatics
 
     # -- RESEARCH INSTITUTES (NEW) --
     "salk-institute-for-biological-studies": "Salk Institute",
