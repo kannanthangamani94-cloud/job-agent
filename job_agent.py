@@ -192,6 +192,33 @@ RSS_FEEDS = {
         "jobRxiv (Postdoc)"
     ),
 
+    # Indeed RSS -- aggregates jobs from ALL company career pages including
+    # Pfizer, AstraZeneca, J&J, Harvard, Stanford, etc. No API key needed.
+    "indeed_postdoc_immuno": (
+        "https://www.indeed.com/rss?q=postdoctoral+immunology&l=United+States&sort=date",
+        "Indeed"
+    ),
+    "indeed_postdoc_neuro": (
+        "https://www.indeed.com/rss?q=postdoctoral+neuroscience&l=United+States&sort=date",
+        "Indeed"
+    ),
+    "indeed_neuroimmuno": (
+        "https://www.indeed.com/rss?q=neuroimmunology&l=United+States&sort=date",
+        "Indeed"
+    ),
+    "indeed_scientist_immuno": (
+        "https://www.indeed.com/rss?q=scientist+immunology&l=United+States&sort=date",
+        "Indeed"
+    ),
+    "indeed_field_app_sci": (
+        "https://www.indeed.com/rss?q=%22field+application+scientist%22+biology&l=United+States&sort=date",
+        "Indeed"
+    ),
+    "indeed_consulting_lifesci": (
+        "https://www.indeed.com/rss?q=life+science+consulting+scientist&l=United+States&sort=date",
+        "Indeed"
+    ),
+
     # Science Careers extra searches
     "science_innate": (
         "https://jobs.sciencecareers.org/jobs/rss/?k=innate+immunity+postdoc",
