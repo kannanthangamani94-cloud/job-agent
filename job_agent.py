@@ -108,62 +108,35 @@ TARGET COMPANIES (industry/consulting):
 # Pharma + research institutes that use Greenhouse job boards
 # ============================================================
 GREENHOUSE_COMPANIES = {
-    # -- PHARMA --
-    "broadinstitute":   "Broad Institute",
-    "abbvie":           "AbbVie",
-    "regeneron":        "Regeneron",
-    "modernatx":        "Moderna",
-    "novartis":         "Novartis",
-    "pfizer":           "Pfizer",
-    "celgene":          "Celgene/BMS",
-    "vertex":           "Vertex Pharmaceuticals",
-    "biogen":           "Biogen",
-    "illumina":         "Illumina",
-    # 10x Genomics excluded -- roles are predominantly single-cell bioinformatics
+    # -- VERIFIED RESEARCH INSTITUTES --
+    "chanzuckerberginitiative": "Chan Zuckerberg Initiative",
+    "czimaginginstitute":       "CZ Imaging Institute",
+    "biohub":                   "CZ Biohub (SF/Chicago/NY)",
 
-    # -- RESEARCH INSTITUTES (NEW) --
-    "salk-institute-for-biological-studies": "Salk Institute",
-    "chanzuckerberginitiative":              "Chan Zuckerberg Initiative",
-    "fredhutch":                             "Fred Hutchinson Cancer Center",
-    "jacksonlaboratory":                     "Jackson Laboratory (JAX)",
-    "wistar":                                "Wistar Institute",
-    "alleninstitute":                        "Allen Institute",
-    "buckinstitute":                         "Buck Institute for Research on Aging",
-    "scriptsinstitute":                      "Scripps Research",
-    "mskcc":                                 "Memorial Sloan Kettering",
-    "rockefeller-university":                "Rockefeller University",
-    "dana-farber":                           "Dana-Farber Cancer Institute",
-    "whitehead":                             "Whitehead Institute (MIT)",
-    "mcleanhospital":                        "McLean Hospital (Harvard)",
-
-    # -- IMAGING & INSTRUMENTS --
-    "akoyabio":                              "Akoya Biosciences (spatial imaging)",
-    "standardbio":                           "Standard BioTools (formerly Fluidigm)",
-    "nanostring":                            "NanoString Technologies",
-    "parsebiosciences":                      "Parse Biosciences",
-    "vizgen":                                "VIZGEN (spatial genomics)",
-
-    # -- LIFE SCIENCE CONSULTING --
-    "putnam":                                "Putnam Associates",
-    "inovalon":                              "Inovalon",
-    "evidera":                               "Evidera (PPD/Thermo)",
-    "guidepoint":                            "Guidepoint Global",
-    "precisionmedicinegrp":                  "Precision Medicine Group",
+    # -- VERIFIED BIOTECH/PHARMA --
+    "nilotherapeutics":         "Nilo Therapeutics (neuro+immunology)",
+    "xairatherapeutics":        "Xaira Therapeutics",
+    "recursionpharmaceuticals": "Recursion Pharmaceuticals",
+    "inceptive":                "Inceptive",
+    "parsebiosciences":         "Parse Biosciences",
+    "akoyabio":                 "Akoya Biosciences",
+    "vertex":                   "Vertex Pharmaceuticals",
+    "illumina":                 "Illumina",
+    "precisionbiosciences":     "Precision BioSciences",
+    "tenaxtherapeutics":        "Tenax Therapeutics",
+    "kymera":                   "Kymera Therapeutics",
+    "imago-biosciences":        "Imago BioSciences",
+    "springbioscience":         "Spring Bioscience",
 }
 
 # ============================================================
 # SOURCE 2: LEVER COMPANIES
 # ============================================================
 LEVER_COMPANIES = {
-    "astrazeneca":           "AstraZeneca",
-    "genentech":             "Genentech",
-    "recursion":             "Recursion Pharmaceuticals",
     "flagship-pioneering":   "Flagship Pioneering",
-    "lek":                   "L.E.K. Consulting",
-    "guidehouselc":          "Guidehouse",
-    "analysisgroup":         "Analysis Group",
-    "zsassociates":          "ZS Associates",
     "cytovale":              "CytoVale",
+    "immunovant":            "Immunovant",
+    "45drives":              "45 Drives",
 }
 
 # ============================================================
@@ -212,6 +185,28 @@ RSS_FEEDS = {
         "https://jobs.newscientist.com/jobs/rss/?k=immunology+neuroscience",
         "New Scientist Jobs"
     ),
+
+    # jobRxiv -- academic preprint community job board, heavy on postdocs
+    "jobrxiv_postdoc": (
+        "https://jobrxiv.org/job-category/postdoc/feed/",
+        "jobRxiv (Postdoc)"
+    ),
+
+    # Science Careers extra searches
+    "science_innate": (
+        "https://jobs.sciencecareers.org/jobs/rss/?k=innate+immunity+postdoc",
+        "Science Careers (AAAS)"
+    ),
+    "science_neuroimmuno": (
+        "https://jobs.sciencecareers.org/jobs/rss/?k=neuroimmunology",
+        "Science Careers (AAAS)"
+    ),
+
+    # Nature Careers extra
+    "nature_inflammation": (
+        "https://www.nature.com/naturecareers/jobs.rss?subject=inflammation&field=postdoc",
+        "Nature Careers (Inflammation)"
+    ),
 }
 
 # ============================================================
@@ -234,7 +229,26 @@ USAJOBS_SEARCHES = [
     ("postdoctoral fellow immunology", ""),
     ("research biologist neuroscience",""),
     ("microbiologist immunology",      ""),
-    ("scientific consultant biology",  ""),
+]
+
+# ============================================================
+# SOURCE 5: WORKDAY COMPANIES
+# Large pharma/biotech that use Workday (not Greenhouse/Lever)
+# API format: POST /wday/cxs/{tenant}/{board}/jobs with JSON body
+# ============================================================
+WORKDAY_COMPANIES = {
+    # (tenant, board, display_name)
+    "modernatx":  ("modernatx",  "M_tx",     "Moderna"),
+    "regeneron":  ("regeneron",  "Careers",  "Regeneron"),
+    "biogen":     ("biibhr",     "external", "Biogen"),
+    "abbvie":     ("abbvie",     "global",   "AbbVie"),
+    "novartis":   ("novartis",   "novartis_careers", "Novartis"),
+}
+
+WORKDAY_KEYWORDS = [
+    "immunology", "neuroimmunology", "neuroscience", "postdoctoral",
+    "postdoc", "innate immunity", "inflammation", "neutrophil",
+    "scientist", "field application", "imaging",
 ]
 
 # ============================================================
@@ -442,6 +456,52 @@ def fetch_usajobs(keyword, location=""):
         return []
 
 # ============================================================
+# FETCH: WORKDAY
+# Workday exposes a semi-public JSON API used by their career pages.
+# POST to /wday/cxs/{tenant}/{board}/jobs with a search keyword.
+# ============================================================
+def fetch_workday_jobs(company_key, tenant, board, company_name):
+    url = f"https://{tenant}.wd1.myworkdayjobs.com/wday/cxs/{tenant}/{board}/jobs"
+    all_jobs = []
+    for kw in WORKDAY_KEYWORDS[:4]:  # limit to 4 keywords to avoid rate limits
+        try:
+            r = requests.post(
+                url,
+                json={"appliedFacets": {}, "limit": 20, "offset": 0, "searchText": kw},
+                headers={"Content-Type": "application/json"},
+                timeout=15
+            )
+            if r.status_code != 200:
+                continue
+            for item in r.json().get("jobPostings", []):
+                title    = item.get("title", "")
+                ext_path = item.get("externalPath", "")
+                loc_list = item.get("locationsText", "")
+                job_url  = f"https://{tenant}.wd1.myworkdayjobs.com{ext_path}" if ext_path else ""
+                job_id   = make_id(f"workday_{company_key}", title + ext_path)
+                all_jobs.append({
+                    "id":       job_id,
+                    "title":    title,
+                    "company":  company_name,
+                    "location": loc_list,
+                    "url":      job_url,
+                    "source":   "Workday",
+                    "type":     "pharma/biotech"
+                })
+        except Exception as e:
+            print(f"  ERROR Workday {company_name} ({kw}): {e}")
+            break
+    # deduplicate by id
+    seen = set()
+    unique = []
+    for j in all_jobs:
+        if j["id"] not in seen:
+            seen.add(j["id"])
+            unique.append(j)
+    print(f"  {company_name} (Workday): {len(unique)} jobs")
+    return unique
+
+# ============================================================
 # KEYWORD PRE-FILTER
 # Checks title AND description snippet for RSS jobs
 # ============================================================
@@ -487,7 +547,7 @@ Respond ONLY with a JSON object like this (no extra text):
 
 Rules:
 - score is 1-10 (10 = perfect fit)
-- apply is true if score >= 6
+- apply is true if score >= 4
 - fit_summary is 1 sentence max
 - job_type is one of: "postdoc", "scientist", "consulting", "other"
 """
@@ -601,7 +661,12 @@ def main():
         for keyword, location in USAJOBS_SEARCHES:
             all_jobs.extend(fetch_usajobs(keyword, location))
     else:
-        print("\nUSAJOBS: Skipped (no API key set -- see README to add)")
+        print("\nUSAJOBS: Skipped (no API key set)")
+
+    # -- Workday (large pharma: Moderna, Regeneron, Biogen, AbbVie, Novartis) --
+    print("\nWORKDAY (large pharma):")
+    for key, (tenant, board, name) in WORKDAY_COMPANIES.items():
+        all_jobs.extend(fetch_workday_jobs(key, tenant, board, name))
 
     print(f"\nTotal jobs fetched across all sources: {len(all_jobs)}")
 
