@@ -41,39 +41,62 @@ import feedparser   # NEW: reads RSS feeds like a structured news ticker
 # Claude reads this to decide if a job is worth emailing you
 # ============================================================
 MY_PROFILE = """
-Postdoctoral Research Scientist with 12+ years in neuroimmunology and immunology.
+Kannan Thangamani, Ph.D. | Postdoctoral Research Associate, Northeastern University, Boston, MA
+12+ years research experience. Contract ends September 2026, actively seeking next role.
+VISA: F-1 OPT (work authorized, no sponsorship needed for OPT period), pursuing O-1A.
 
-EXPERTISE:
-- Stress-driven neutrophil activation, NET formation, neuroinflammation
-- iPSC disease modeling, hiPSC-derived neurons and immune cells
-- Flow cytometry, confocal microscopy (Zeiss LSM 710/880), ImageStream
-- Single-cell RNA sequencing (scRNA-seq) analysis
-- Behavioral neuroscience (CUS models, sucrose preference, RFID tracking)
-- Computational: Python, R, agent-based modeling, CellProfiler, ImageJ macros
-- Publication in Psychoneuroendocrinology (2026)
-- PhD in Neuroscience, UTSA (2023)
-- Currently: Northeastern University NINJA Lab (Okeke Lab), Boston
+EDUCATION:
+- PhD Neuroscience, University of Texas at San Antonio (2017-2023)
+- B.Tech Biotechnology, SRM Institute of Science and Technology, Chennai (2012-2016)
+- Consulting Workshop (10 weeks), Enventure, 2025: case interviews, market sizing, M&A, profitability
+
+AWARDS: Dean's Postdoctoral Research Award (2025), Best Poster x2 (2022, 2023), DBT-JRF Fellow (2016-17), INSA-IAS Summer Research Fellowship (2013)
+
+CORE RESEARCH EXPERTISE:
+- Neuroimmunology: stress-driven neutrophil activation, NET (neutrophil extracellular trap) formation, stress-immune-behavior axis
+- Innate immunity: neutrophil biology, host-pathogen interaction (Coxiella burnetii), cytokine profiling, innate immune signaling
+- iPSC disease modeling: hiPSC-derived cortical neurons, dopamine neurons (VTA), Alzheimer's model (PSEN1/PSEN2), addiction model
+- Behavioral neuroscience: CUS models, sucrose preference, anxiety assays
+- Human subjects research: IRB-approved study design, 30+ donors, consent management
+
+WET LAB TECHNIQUES:
+- Flow cytometry (multi-color, ImageStream), ELISA, western blot, immunofluorescence
+- Confocal microscopy (Zeiss LSM 710/880), live cell imaging, CellProfiler, ImageJ
+- Patch clamp electrophysiology, stem cell culture, neuronal differentiation protocols
+- scRNA-seq analysis, statistical inference (R, Python, GraphPad Prism)
+
+PUBLICATIONS:
+1. First-author: Psychoneuroendocrinology (2026) — stress hormones, neutrophils, NET formation, behavioral consequences
+2. Co-author: Nature Communications (2019) — VTA astrocytes orchestrate avoidance/approach behavior
+3. Co-author: Toxicology in Vitro (2025) — estrogen effects on T-cell leukemia
+4. Co-author: Archives of Rheumatology (2020) — sex-based differences in RA cytokine signaling
+5. Co-author: Journal of Neuroimmunology (2020) — neuroendocrine-immune aging
+6. In submission: Coxiella burnetii delays apoptosis in primary human neutrophils
+
+LEADERSHIP & OPERATIONS:
+- Built research lab from scratch: 20+ workflows, $25K budget, scaled 0→6 researchers in 8 months
+- Managed and trained 6 direct reports; enabled 2 master's thesis completions
+- GLP/GDP compliance, SOP development, procurement
 
 LOOKING FOR (in order of preference):
-- Postdoctoral positions in neuroimmunology, stress biology, or neuroscience
-  at universities, research institutes, or medical schools
-- Scientist I/II roles in immunology, neuroimmunology at pharma/biotech
-- Imaging scientist / computational biology roles
-- Life science consulting (entry level)
+1. Postdoctoral positions: neuroimmunology, stress biology, innate immunity, neuroinflammation
+2. Scientist I/II: immunology, neuroimmunology, inflammation at pharma/biotech
+3. Field Application Scientist / Applications Scientist: confocal/multiphoton microscopy, flow cytometry, imaging platforms (Zeiss, Leica, Nikon, BD, Akoya, 10x)
+4. Life science strategy consulting (entry/junior): health care, biopharma, market access, competitive intelligence
+5. Medical Science Liaison (MSL): immunology, neuroscience therapeutic areas
+6. Computational biology / imaging scientist roles
 
 TARGET INSTITUTIONS (postdoc):
-  Harvard, MIT, Stanford, UCSF, Johns Hopkins, Rockefeller, Salk,
-  Buck Institute, Jackson Lab, Fred Hutchinson, Allen Institute,
-  Wistar Institute, Cold Spring Harbor, NIH (any intramural program),
-  Scripps Research, Moffitt, MD Anderson, Mayo Clinic, NYU, Columbia,
-  Yale, Duke, Vanderbilt, UT Southwestern
+  Harvard, MIT, Stanford, UCSF, Johns Hopkins, Rockefeller, Salk, Buck Institute,
+  Jackson Lab, Fred Hutchinson, Allen Institute, Wistar, Cold Spring Harbor,
+  NIH intramural, Scripps, Moffitt, MD Anderson, Mayo Clinic, NYU, Columbia,
+  Yale, Duke, Vanderbilt, UT Southwestern, Broad Institute
 
-TARGET COMPANIES (industry):
-  Genentech, AstraZeneca, J&J, Broad Institute, Novartis, Pfizer,
-  AbbVie, Bristol Myers Squibb, Regeneron, Biogen, Moderna
-
-VISA: F-1 OPT (work authorized), pursuing O-1A
-CONTRACT ENDS: September 2026 -- actively seeking next role
+TARGET COMPANIES (industry/consulting):
+  Genentech, AstraZeneca, J&J, Novartis, Pfizer, AbbVie, BMS, Regeneron, Biogen, Moderna,
+  Zeiss, Leica Microsystems, Nikon, BD Biosciences, Akoya Biosciences, 10x Genomics,
+  Putnam Associates, L.E.K. Consulting, IQVIA, ZS Associates, Analysis Group, Evidera,
+  Charles River Associates, Inovalon, Guidehouse
 """
 
 # ============================================================
@@ -108,6 +131,20 @@ GREENHOUSE_COMPANIES = {
     "dana-farber":                           "Dana-Farber Cancer Institute",
     "whitehead":                             "Whitehead Institute (MIT)",
     "mcleanhospital":                        "McLean Hospital (Harvard)",
+
+    # -- IMAGING & INSTRUMENTS --
+    "akoyabio":                              "Akoya Biosciences (spatial imaging)",
+    "standardbio":                           "Standard BioTools (formerly Fluidigm)",
+    "nanostring":                            "NanoString Technologies",
+    "parsebiosciences":                      "Parse Biosciences",
+    "vizgen":                                "VIZGEN (spatial genomics)",
+
+    # -- LIFE SCIENCE CONSULTING --
+    "putnam":                                "Putnam Associates",
+    "inovalon":                              "Inovalon",
+    "evidera":                               "Evidera (PPD/Thermo)",
+    "guidepoint":                            "Guidepoint Global",
+    "precisionmedicinegrp":                  "Precision Medicine Group",
 }
 
 # ============================================================
@@ -118,6 +155,11 @@ LEVER_COMPANIES = {
     "genentech":             "Genentech",
     "recursion":             "Recursion Pharmaceuticals",
     "flagship-pioneering":   "Flagship Pioneering",
+    "lek":                   "L.E.K. Consulting",
+    "guidehouselc":          "Guidehouse",
+    "analysisgroup":         "Analysis Group",
+    "zsassociates":          "ZS Associates",
+    "cytovale":              "CytoVale",
 }
 
 # ============================================================
@@ -182,26 +224,43 @@ USAJOBS_API_KEY  = os.environ.get("USAJOBS_API_KEY", "")
 USAJOBS_EMAIL    = os.environ.get("USAJOBS_EMAIL", "")  # the email you register with
 
 USAJOBS_SEARCHES = [
-    # Format: (keyword, location_filter)
-    ("immunologist postdoc",        ""),
-    ("neuroscience postdoc NIH",    "Bethesda, Maryland"),
-    ("neuroimmunology",             ""),
+    ("immunologist postdoc",           ""),
+    ("neuroscience postdoc NIH",       "Bethesda, Maryland"),
+    ("neuroimmunology",                ""),
     ("postdoctoral fellow immunology", ""),
-    ("research biologist neuroscience", ""),
+    ("research biologist neuroscience",""),
+    ("microbiologist immunology",      ""),
+    ("scientific consultant biology",  ""),
 ]
 
 # ============================================================
 # KEYWORDS -- pre-filter before Claude scoring
 # ============================================================
 KEYWORDS = [
-    "immunology", "neuroimmunology", "neuroscience", "postdoc", "post-doc",
-    "postdoctoral", "scientist", "research scientist", "imaging",
-    "flow cytometry", "inflammation", "neutrophil", "iPSC", "stem cell",
-    "single cell", "scRNA", "computational biology", "bioinformatics",
-    "innate immunity", "confocal", "microscopy", "neurology", "psychiatry",
-    "stress", "behavioral", "consulting", "life science", "fellow",
-    "neuro", "immune", "microglia", "astrocyte", "cytokine", "T cell",
-    "myeloid", "lymphocyte", "brain", "neuroinflammation"
+    # Core science
+    "immunology", "neuroimmunology", "neuroscience", "neuroinflammation",
+    "innate immunity", "neutrophil", "inflammation", "cytokine",
+    "iPSC", "stem cell", "single cell", "scRNA",
+    "flow cytometry", "confocal", "microscopy", "imaging",
+    "microglia", "astrocyte", "T cell", "myeloid", "lymphocyte",
+    "brain", "neuro", "immune", "stress", "behavioral",
+    "host pathogen", "NET", "extracellular trap",
+    # Job titles - academic
+    "postdoc", "post-doc", "postdoctoral", "fellow", "research associate",
+    # Job titles - industry science
+    "scientist", "research scientist", "biologist", "immunologist",
+    "computational biology", "bioinformatics",
+    # Job titles - imaging/instruments
+    "field application scientist", "applications scientist",
+    "application specialist", "field scientist", "imaging specialist",
+    "microscopy specialist", "flow cytometry specialist",
+    # Job titles - consulting
+    "consulting", "consultant", "life science strategy", "scientific consultant",
+    "medical science liaison", "MSL", "market access", "health economics",
+    "competitive intelligence", "business analyst", "life science",
+    # Companies/platforms
+    "Zeiss", "Leica", "Nikon", "Akoya", "spatial biology", "spatial genomics",
+    "CODEX", "multiphoton", "lightsheet", "CellProfiler",
 ]
 
 # ============================================================
