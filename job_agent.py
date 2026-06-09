@@ -108,35 +108,45 @@ TARGET COMPANIES (industry/consulting):
 # Pharma + research institutes that use Greenhouse job boards
 # ============================================================
 GREENHOUSE_COMPANIES = {
-    # -- VERIFIED RESEARCH INSTITUTES --
+    # ALL slugs below verified LIVE (HTTP 200) June 2026. Dead slugs
+    # (czimaginginstitute, nilotherapeutics, akoyabio, vertex, illumina,
+    #  precisionbiosciences, tenaxtherapeutics, imago-biosciences, etc.)
+    # were removed -- those companies don't use Greenhouse public boards.
+
+    # -- Research institutes --
     "chanzuckerberginitiative": "Chan Zuckerberg Initiative",
-    "czimaginginstitute":       "CZ Imaging Institute",
     "biohub":                   "CZ Biohub (SF/Chicago/NY)",
 
-    # -- VERIFIED BIOTECH/PHARMA --
-    "nilotherapeutics":         "Nilo Therapeutics (neuro+immunology)",
+    # -- Biotech / pharma --
     "xairatherapeutics":        "Xaira Therapeutics",
     "recursionpharmaceuticals": "Recursion Pharmaceuticals",
     "inceptive":                "Inceptive",
     "parsebiosciences":         "Parse Biosciences",
-    "akoyabio":                 "Akoya Biosciences",
-    "vertex":                   "Vertex Pharmaceuticals",
-    "illumina":                 "Illumina",
-    "precisionbiosciences":     "Precision BioSciences",
-    "tenaxtherapeutics":        "Tenax Therapeutics",
-    "kymera":                   "Kymera Therapeutics",
-    "imago-biosciences":        "Imago BioSciences",
-    "springbioscience":         "Spring Bioscience",
+    "kymeratherapeutics":       "Kymera Therapeutics",
+    "10xgenomics":              "10x Genomics (FAS/scientist roles)",
+    "altoslabs":                "Altos Labs",
+    "relaytherapeutics":        "Relay Therapeutics",
+    "cellarity":                "Cellarity",
+    "abcellera":                "AbCellera",
+    "tesseratherapeutics":      "Tessera Therapeutics",
+    "beamtherapeutics":         "Beam Therapeutics",
+    "caribou":                  "Caribou Biosciences",
+    "twistbioscience":          "Twist Bioscience",
+    "neumora":                  "Neumora Therapeutics (neuro)",
+    "ginkgobioworks":           "Ginkgo Bioworks",
+    "tangotherapeutics":        "Tango Therapeutics",
+    "chromamedicine":           "Chroma Medicine",
+    "verve":                    "Verve Therapeutics",
+    "primemedicine":            "Prime Medicine",
 }
 
 # ============================================================
 # SOURCE 2: LEVER COMPANIES
+# NOTE: all previously-listed Lever slugs (flagship-pioneering, cytovale,
+# immunovant, 45drives) return 404 -- those companies left Lever. Empty
+# until a live slug is verified; the loop simply does nothing.
 # ============================================================
 LEVER_COMPANIES = {
-    "flagship-pioneering":   "Flagship Pioneering",
-    "cytovale":              "CytoVale",
-    "immunovant":            "Immunovant",
-    "45drives":              "45 Drives",
 }
 
 # ============================================================
@@ -151,90 +161,21 @@ LEVER_COMPANIES = {
 # One RSS URL = hundreds of institutions covered. Very efficient.
 # ============================================================
 RSS_FEEDS = {
-    # Nature Careers -- filtered to your keywords
-    # You can customize the search by editing the URL
-    "nature_immunology":   (
-        "https://www.nature.com/naturecareers/jobs.rss"
-        "?subject=immunology&field=postdoc",
-        "Nature Careers (Immunology)"
-    ),
-    "nature_neuroscience": (
-        "https://www.nature.com/naturecareers/jobs.rss"
-        "?subject=neuroscience&field=postdoc",
-        "Nature Careers (Neuroscience)"
-    ),
-
-    # Science Careers (AAAS) -- covers US universities extensively
-    "science_postdoc": (
-        "https://jobs.sciencecareers.org/jobs/rss/?k=postdoc+immunology",
-        "Science Careers (AAAS)"
-    ),
-    "science_neuro": (
-        "https://jobs.sciencecareers.org/jobs/rss/?k=postdoc+neuroscience",
-        "Science Careers (AAAS)"
-    ),
-
-    # HigherEdJobs -- university HR listings, postdoc category
-    "highered_postdoc": (
-        "https://www.higheredjobs.com/rss/jobFeed.cfm?type=2&JobCat=21",
-        "HigherEdJobs (Postdoc)"
-    ),
-
-    # New Scientist Jobs (UK + international)
-    "newscientist": (
-        "https://jobs.newscientist.com/jobs/rss/?k=immunology+neuroscience",
-        "New Scientist Jobs"
-    ),
-
-    # jobRxiv -- academic preprint community job board, heavy on postdocs
+    # jobRxiv -- academic preprint community job board, heavy on postdocs.
+    # Returns ~100 postdocs across ALL fields; keyword filter cuts the
+    # non-bio ones (physics, engineering). This is our main academic feed
+    # since Nature/Science Careers RSS feeds are now dead (verified 2026).
     "jobrxiv_postdoc": (
         "https://jobrxiv.org/job-category/postdoc/feed/",
         "jobRxiv (Postdoc)"
     ),
-
-    # Indeed RSS -- aggregates jobs from ALL company career pages including
-    # Pfizer, AstraZeneca, J&J, Harvard, Stanford, etc. No API key needed.
-    "indeed_postdoc_immuno": (
-        "https://www.indeed.com/rss?q=postdoctoral+immunology&l=United+States&sort=date",
-        "Indeed"
-    ),
-    "indeed_postdoc_neuro": (
-        "https://www.indeed.com/rss?q=postdoctoral+neuroscience&l=United+States&sort=date",
-        "Indeed"
-    ),
-    "indeed_neuroimmuno": (
-        "https://www.indeed.com/rss?q=neuroimmunology&l=United+States&sort=date",
-        "Indeed"
-    ),
-    "indeed_scientist_immuno": (
-        "https://www.indeed.com/rss?q=scientist+immunology&l=United+States&sort=date",
-        "Indeed"
-    ),
-    "indeed_field_app_sci": (
-        "https://www.indeed.com/rss?q=%22field+application+scientist%22+biology&l=United+States&sort=date",
-        "Indeed"
-    ),
-    "indeed_consulting_lifesci": (
-        "https://www.indeed.com/rss?q=life+science+consulting+scientist&l=United+States&sort=date",
-        "Indeed"
-    ),
-
-    # Science Careers extra searches
-    "science_innate": (
-        "https://jobs.sciencecareers.org/jobs/rss/?k=innate+immunity+postdoc",
-        "Science Careers (AAAS)"
-    ),
-    "science_neuroimmuno": (
-        "https://jobs.sciencecareers.org/jobs/rss/?k=neuroimmunology",
-        "Science Careers (AAAS)"
-    ),
-
-    # Nature Careers extra
-    "nature_inflammation": (
-        "https://www.nature.com/naturecareers/jobs.rss?subject=inflammation&field=postdoc",
-        "Nature Careers (Inflammation)"
-    ),
 }
+
+# NOTE (verified June 2026 by live HTTP test):
+#   - Indeed killed its RSS feeds and 403-blocks datacenter IPs -> removed
+#   - Nature Careers / Science Careers / HigherEdJobs / New Scientist RSS
+#     all return 0 entries (dead URLs) -> removed
+#   - Replaced by: The Muse API (no key) + Adzuna API (free key) below
 
 # ============================================================
 # SOURCE 4: USAJOBS API (NEW) -- for NIH and federal positions
@@ -264,18 +205,45 @@ USAJOBS_SEARCHES = [
 # API format: POST /wday/cxs/{tenant}/{board}/jobs with JSON body
 # ============================================================
 WORKDAY_COMPANIES = {
-    # (tenant, board, display_name)
-    "modernatx":  ("modernatx",  "M_tx",     "Moderna"),
-    "regeneron":  ("regeneron",  "Careers",  "Regeneron"),
-    "biogen":     ("biibhr",     "external", "Biogen"),
-    "abbvie":     ("abbvie",     "global",   "AbbVie"),
-    "novartis":   ("novartis",   "novartis_careers", "Novartis"),
+    # key: (tenant, wd_version, board, display_name)  -- all verified live June 2026
+    "modernatx":  ("modernatx", 1, "M_tx",             "Moderna"),
+    "regeneron":  ("regeneron", 1, "Careers",          "Regeneron"),
+    "biogen":     ("biibhr",    3, "External",         "Biogen"),
+    "novartis":   ("novartis",  3, "Novartis_Careers", "Novartis"),
 }
 
 WORKDAY_KEYWORDS = [
     "immunology", "neuroimmunology", "neuroscience", "postdoctoral",
     "postdoc", "innate immunity", "inflammation", "neutrophil",
     "scientist", "field application", "imaging",
+]
+
+# ============================================================
+# SOURCE 6: THE MUSE API (no key required)
+# Free public API. Good for industry Scientist / FAS / consulting roles.
+# We pull a few pages of the most relevant categories, then keyword-filter.
+# ============================================================
+MUSE_CATEGORIES = ["Science and Engineering", "Healthcare"]
+MUSE_PAGES = 3   # 20 jobs/page -> ~120 jobs across categories before filtering
+
+# ============================================================
+# SOURCE 7: ADZUNA API (free key -- best Indeed replacement)
+# Aggregates from company career pages, universities, job boards.
+# Register free at https://developer.adzuna.com/ (2 min) for an
+# app_id + app_key, then add as GitHub secrets:
+#   ADZUNA_APP_ID  and  ADZUNA_APP_KEY
+# If not set, this source is simply skipped (like USAJobs).
+# ============================================================
+ADZUNA_APP_ID  = os.environ.get("ADZUNA_APP_ID", "")
+ADZUNA_APP_KEY = os.environ.get("ADZUNA_APP_KEY", "")
+
+ADZUNA_SEARCHES = [
+    "postdoctoral immunology",
+    "postdoctoral neuroscience",
+    "neuroimmunology",
+    "scientist immunology",
+    "field application scientist",
+    "life science consulting",
 ]
 
 # ============================================================
@@ -487,10 +455,11 @@ def fetch_usajobs(keyword, location=""):
 # Workday exposes a semi-public JSON API used by their career pages.
 # POST to /wday/cxs/{tenant}/{board}/jobs with a search keyword.
 # ============================================================
-def fetch_workday_jobs(company_key, tenant, board, company_name):
-    url = f"https://{tenant}.wd1.myworkdayjobs.com/wday/cxs/{tenant}/{board}/jobs"
+def fetch_workday_jobs(company_key, tenant, wd_ver, board, company_name):
+    base = f"https://{tenant}.wd{wd_ver}.myworkdayjobs.com"
+    url  = f"{base}/wday/cxs/{tenant}/{board}/jobs"
     all_jobs = []
-    for kw in WORKDAY_KEYWORDS[:4]:  # limit to 4 keywords to avoid rate limits
+    for kw in WORKDAY_KEYWORDS[:5]:  # limit keywords to avoid rate limits
         try:
             r = requests.post(
                 url,
@@ -504,7 +473,7 @@ def fetch_workday_jobs(company_key, tenant, board, company_name):
                 title    = item.get("title", "")
                 ext_path = item.get("externalPath", "")
                 loc_list = item.get("locationsText", "")
-                job_url  = f"https://{tenant}.wd1.myworkdayjobs.com{ext_path}" if ext_path else ""
+                job_url  = f"{base}{ext_path}" if ext_path else ""
                 job_id   = make_id(f"workday_{company_key}", title + ext_path)
                 all_jobs.append({
                     "id":       job_id,
@@ -527,6 +496,79 @@ def fetch_workday_jobs(company_key, tenant, board, company_name):
             unique.append(j)
     print(f"  {company_name} (Workday): {len(unique)} jobs")
     return unique
+
+# ============================================================
+# FETCH: THE MUSE (no key)
+# ============================================================
+def fetch_muse_jobs():
+    jobs = []
+    for cat in MUSE_CATEGORIES:
+        for page in range(1, MUSE_PAGES + 1):
+            try:
+                r = requests.get(
+                    "https://www.themuse.com/api/public/jobs",
+                    params={"category": cat, "page": page},
+                    timeout=15
+                )
+                if r.status_code != 200:
+                    break
+                for item in r.json().get("results", []):
+                    title   = item.get("name", "")
+                    company = item.get("company", {}).get("name", "")
+                    locs    = ", ".join(l.get("name", "") for l in item.get("locations", []))
+                    url     = item.get("refs", {}).get("landing_page", "")
+                    jobs.append({
+                        "id":       make_id("muse", title + company + url),
+                        "title":    title,
+                        "company":  company,
+                        "location": locs,
+                        "url":      url,
+                        "source":   "The Muse",
+                        "type":     "industry"
+                    })
+            except Exception as e:
+                print(f"  ERROR The Muse ({cat} p{page}): {e}")
+                break
+    print(f"  The Muse: {len(jobs)} jobs")
+    return jobs
+
+# ============================================================
+# FETCH: ADZUNA (free key; skipped if not configured)
+# ============================================================
+def fetch_adzuna_jobs(query):
+    if not ADZUNA_APP_ID or not ADZUNA_APP_KEY:
+        return []
+    try:
+        r = requests.get(
+            "https://api.adzuna.com/v1/api/jobs/us/search/1",
+            params={
+                "app_id":           ADZUNA_APP_ID,
+                "app_key":          ADZUNA_APP_KEY,
+                "what":             query,
+                "results_per_page": 25,
+                "max_days_old":     30,
+                "content-type":     "application/json",
+            },
+            timeout=15
+        )
+        r.raise_for_status()
+        jobs = []
+        for item in r.json().get("results", []):
+            jobs.append({
+                "id":          make_id("adzuna", str(item.get("id", "")) + item.get("title", "")),
+                "title":       item.get("title", ""),
+                "company":     item.get("company", {}).get("display_name", ""),
+                "location":    item.get("location", {}).get("display_name", ""),
+                "url":         item.get("redirect_url", ""),
+                "source":      "Adzuna",
+                "type":        "aggregated",
+                "description": item.get("description", "")[:300],
+            })
+        print(f"  Adzuna '{query}': {len(jobs)} jobs")
+        return jobs
+    except Exception as e:
+        print(f"  ERROR Adzuna '{query}': {e}")
+        return []
 
 # ============================================================
 # KEYWORD PRE-FILTER
@@ -690,10 +732,22 @@ def main():
     else:
         print("\nUSAJOBS: Skipped (no API key set)")
 
-    # -- Workday (large pharma: Moderna, Regeneron, Biogen, AbbVie, Novartis) --
+    # -- Workday (large pharma: Moderna, Regeneron, Biogen, Novartis) --
     print("\nWORKDAY (large pharma):")
-    for key, (tenant, board, name) in WORKDAY_COMPANIES.items():
-        all_jobs.extend(fetch_workday_jobs(key, tenant, board, name))
+    for key, (tenant, ver, board, name) in WORKDAY_COMPANIES.items():
+        all_jobs.extend(fetch_workday_jobs(key, tenant, ver, board, name))
+
+    # -- The Muse (no API key needed) --
+    print("\nTHE MUSE (science + healthcare):")
+    all_jobs.extend(fetch_muse_jobs())
+
+    # -- Adzuna (free API key) --
+    if ADZUNA_APP_ID and ADZUNA_APP_KEY:
+        print("\nADZUNA (aggregated US listings):")
+        for q in ADZUNA_SEARCHES:
+            all_jobs.extend(fetch_adzuna_jobs(q))
+    else:
+        print("\nADZUNA: Skipped (no API keys set)")
 
     print(f"\nTotal jobs fetched across all sources: {len(all_jobs)}")
 
