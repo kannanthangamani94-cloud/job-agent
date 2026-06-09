@@ -2,7 +2,7 @@ name: Daily Job Agent v2
 
 on:
   schedule:
-    - cron: "0 13 * * 1-5"   # 8 AM Eastern (EDT = UTC-5 in winter, UTC-4 in summer)
+    - cron: "0 14 * * *"   # 10 AM Eastern every day (14:00 UTC = 10 AM EDT)
   workflow_dispatch:          # lets you click "Run workflow" manually to test
 
 jobs:
